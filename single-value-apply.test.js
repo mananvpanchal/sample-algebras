@@ -10,4 +10,5 @@ const u = new SingleValueApply(function (x) {
 
 const v = new SingleValueApply(9);
 
-console.log(v.ap(u.ap(a.map(f => g => x => f(g(x))))), v.ap(u).ap(a));
+console.log(v.map(a => a), v); //identity
+console.log(v.ap(u.ap(a.map(f => g => x => f(g(x))))), v.ap(u).ap(a)); //composition

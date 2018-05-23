@@ -4,7 +4,7 @@ const AddGroup = function (n) {
     AddMonoid.call(this, n);
 
     this.invert = function () {
-        return new AddGroup(-1 * this.val);
+        return new this.constructor(-1 * this.val);
     }
 }
 

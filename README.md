@@ -1,0 +1,1 @@
+Sample algebras based on [fantacyland](https://github.com/fantasyland/fantasy-land) specs
