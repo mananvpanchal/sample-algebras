@@ -1,23 +1,20 @@
+const AddSemigroup = require('./add-semigroup');
+
 const AddMonoid = function (n) {
-
-	this.val = n;
-
-	this.concat = function (m) {
-		if (m instanceof AddMonoid) {
-			return this._concat(this.val, m.val)
-		} else {
-			return this._concat(this.val, m);
-		}
-	}
-
-	this._concat = function (n, m) {
-		return new this.constructor(n + m);
-	}
-
+	AddSemigroup.call(this, n);
 };
 
 AddMonoid.empty = function () {
 	return new this(0);
 };
 
+console.log(AddMonoid, AddSemigroup);
+
+AddMonoid.prototype.__proto__ = {...AddSemigroup.prototype};
+AddMonoid.__proto__ = {...AddSemigroup};
+
+//AddMonoid.prototype.__proto__ = AddSemigroup.prototype;
+//AddMonoid.__proto__ = AddSemigroup;
+
+console.log(AddMonoid, AddSemigroup);
 module.exports = AddMonoid;

@@ -1,24 +1,14 @@
+const SemiGroupoid = require('./semi-groupoid');
+
 const Category = function (n) {
-
-    this.val = n;
-
-    this.compose = function(m) {
-        if(m instanceof Category) {
-            return new Category({ 
-                a: this.val.a ? this.val.a : m.val.a, 
-                b: m.val.b ? m.val.b : this.val.b 
-            });
-        } else {
-            return new Category({ 
-                a: this.val.a ? this.val.a : m.a, 
-                b: m.b ? m.b : this.val.b 
-            });
-        }
-    }
+    SemiGroupoid.call(this, n);
 }
 
 Category.id = function() {
     return new Category({ a: null, b: null });
 }
+
+Category.prototype.__proto__ = {...SemiGroupoid.prototype};
+Category.__proto__ = {...SemiGroupoid};
 
 module.exports = Category;
