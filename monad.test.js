@@ -1,6 +1,6 @@
 const Monad = require('./monad');
 
-const Values = function (val) {
+const Set = function (val) {
     this.val = val;
 
     this.index = 0;
@@ -20,19 +20,22 @@ const Values = function (val) {
     }
 
     this.empty = function () {
-        return new Values([]);
+        return new Set([]);
     }
 };
 
-console.log(new Monad(new Values([1, 2, 3, 4, 5])).map(function(x) { return x + 1}).getValue());
-console.log(new Monad(new Values([1, 2, 3, 4, 5])).ap(new Monad(function (x) { return x * 3 })).getValue());
-console.log(new Monad(new Values([1, 2, 3, 4, 5])).chain(function (x) { return new Monad(x * -2) }).getValue());
+console.log(Monad.of(new Set([1, 2, 3, 4, 5])).map(function (x) { return x + 1 }).getValue());
+console.log(Monad.of(new Set([1, 2, 3, 4, 5])).ap(Monad.of(function (x) { return x * 3 })).getValue());
+console.log(Monad.of(new Set([1, 2, 3, 4, 5])).chain(function (x) { return Monad.of(x * -2) }).getValue());
 
-console.log(new Monad(3).map(function(x) { return x + 1}).getValue());
-console.log(new Monad(4).ap(new Monad(function (x) { return x * 3 })).getValue());
-console.log(new Monad(5).chain(function (x) { return new Monad(x * -2) }).getValue());
+console.log(Monad.of(3).map(function (x) { return x + 1 }).getValue());
+console.log(Monad.of(4).ap(Monad.of(function (x) { return x * 3 })).getValue());
+console.log(Monad.of(5).chain(function (x) { return Monad.of(x * -2) }).getValue());
 
-console.log(new Monad(new Values([1, 2, 3, 4, 5]))
-    .chain(x => new Monad(x + 5)
-        .chain(x => new Monad(x * 2)
-            .chain(x => new Monad(x / 2)))).getValue());
+console.log(
+    Monad.of(new Set([1, 2, 3, 4, 5]))
+        .chain(x => Monad.of(x + 5)
+            .chain(x => Monad.of(x * 2)
+                .chain(x => Monad.of(x / 2))
+            )
+        ).getValue());

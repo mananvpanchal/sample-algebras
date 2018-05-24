@@ -1,6 +1,5 @@
 const Monad = function (n) {
 
-
     this.val = n;
 
     this.getValue = function () {
