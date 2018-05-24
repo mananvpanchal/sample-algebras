@@ -8,7 +8,7 @@ Category.id = function() {
     return new Category({ a: null, b: null });
 }
 
-Category.prototype.__proto__ = {...SemiGroupoid.prototype};
-Category.__proto__ = {...SemiGroupoid};
+Category.prototype.__proto__ = SemiGroupoid.prototype;
+Category.__proto__ = SemiGroupoid;
 
 module.exports = Category;

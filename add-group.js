@@ -8,7 +8,7 @@ const AddGroup = function (n) {
     }
 }
 
-AddGroup.prototype.__proto__ = {...AddMonoid.prototype};
-AddGroup.__proto__ = {...AddMonoid};
+AddGroup.prototype.__proto__ = AddMonoid.prototype;
+AddGroup.__proto__ = AddMonoid;
 
 module.exports = AddGroup;
